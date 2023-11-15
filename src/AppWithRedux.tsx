@@ -14,7 +14,6 @@ import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./state/store";
 
-
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistType = {
     id: string
@@ -26,30 +25,12 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-
 function AppWithRedux() {
 
     const dispatch = useDispatch()
 
     const todolists = useSelector<AppStateType, TodolistType[]>(state => state.todolists)
     const tasks = useSelector<AppStateType, TasksStateType>(state => state.tasks)
-
-    // let [todolists, dispatchTodolist] = useReducer(todolistsReducer, [
-    //     {id: todolistId1, title: "What to learn", filter: "all"},
-    //     {id: todolistId2, title: "What to buy", filter: "all"}
-    // ])
-
-    // let [tasks, dispatchTasks] = useReducer(tasksReducer, {
-    //     [todolistId1]: [
-    //         {id: v1(), title: "HTML&CSS", isDone: true},
-    //         {id: v1(), title: "JS", isDone: true}
-    //     ],
-    //     [todolistId2]: [
-    //         {id: v1(), title: "Milk", isDone: true},
-    //         {id: v1(), title: "React Book", isDone: true}
-    //     ]
-    // });
-
 
     function removeTask(id: string, todolistId: string) {
         dispatch(removeTaskAC(id, todolistId))
@@ -66,7 +47,6 @@ function AppWithRedux() {
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
         dispatch(changeTaskTitleAC(id, newTitle, todolistId))
     }
-
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
         dispatch(changeTodolistFilterAC(todolistId, value))
